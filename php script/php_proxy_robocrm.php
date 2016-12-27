@@ -8,7 +8,12 @@ if(isset($_POST['tid'])){ $tid = trim($_POST['tid']);}
 if(isset($_POST['fid'])){ $fid = trim($_POST['fid']);}
 if(isset($_POST['product'])){ $product = $_POST['product'];}
 
-if(isset($_COOKIE["visit_id"])) { $visit_id = $_COOKIE["visit_id"] ;} else {$visit_id = null;};
+if(isset($_POST['visit_id'])){ 
+    $visit_id = $_POST['visit_id'];
+} else {
+    if(isset($_COOKIE["visit_id"])) { $visit_id = $_COOKIE["visit_id"] ;} else {$visit_id = null;};    
+}
+
 $product = json_encode($product[0]);
 $post_data = json_encode(array(
     'visit_id' => $visit_id,
@@ -28,13 +33,13 @@ curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
 curl_setopt($ch, CURLOPT_POST, 1); // set POST method
 curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-     
-        'Access-Control-Request-Headers: content-type',
-        'Access-Control-Request-Method: POST',
-        'Connection: keep-alive',
-        'Content-Type: application/json',
+   
+    'Access-Control-Request-Headers: content-type',
+    'Access-Control-Request-Method: POST',
+    'Connection: keep-alive',
+    'Content-Type: application/json',
 
-));
+    ));
 curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data); // add POST fields
 $result = curl_exec($ch);
 
