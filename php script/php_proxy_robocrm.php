@@ -1,12 +1,12 @@
 <?
 $interest = 2;
 
-if(isset($_POST['phone'])){ $phone = trim($_POST['phone']);}
-if(isset($_POST['first_name'])){$first_name = trim($_POST['first_name']) ;}
-if(isset($_POST['comment'])){$comment = trim($_POST['comment']) ;}
-if(isset($_POST['tid'])){ $tid = trim($_POST['tid']);}
-if(isset($_POST['fid'])){ $fid = trim($_POST['fid']);}
-if(isset($_POST['product'])){ $product = $_POST['product'];}
+$phone = isset($_POST['phone']) ? trim($_POST['phone']) : '';
+$phone = isset($_POST['first_name']) ? trim($_POST['first_name']) : '';
+$phone = isset($_POST['comment']) ? trim($_POST['comment']) : '';
+$phone = isset($_POST['tid']) ? trim($_POST['tid']) : '';
+$phone = isset($_POST['fid']) ? trim($_POST['fid']) : '';
+$phone = isset($_POST['product']) ? trim($_POST['product']) : '';
 
 if(isset($_POST['visit_id'])){ 
     $visit_id = $_POST['visit_id'];
