@@ -2,11 +2,11 @@
 $interest = 2;
 
 $phone = isset($_POST['phone']) ? trim($_POST['phone']) : '';
-$phone = isset($_POST['first_name']) ? trim($_POST['first_name']) : '';
-$phone = isset($_POST['comment']) ? trim($_POST['comment']) : '';
-$phone = isset($_POST['tid']) ? trim($_POST['tid']) : '';
-$phone = isset($_POST['fid']) ? trim($_POST['fid']) : '';
-$phone = isset($_POST['product']) ? trim($_POST['product']) : '';
+$first_name = isset($_POST['first_name']) ? trim($_POST['first_name']) : '';
+$comment = isset($_POST['comment']) ? trim($_POST['comment']) : '';
+$tid = isset($_POST['tid']) ? trim($_POST['tid']) : '';
+$fid = isset($_POST['fid']) ? trim($_POST['fid']) : '';
+$product = isset($_POST['product']) ? trim($_POST['product']) : '';
 
 if(isset($_POST['visit_id'])){ 
     $visit_id = $_POST['visit_id'];
