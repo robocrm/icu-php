@@ -6,7 +6,7 @@ $first_name = isset($_POST['first_name']) ? trim($_POST['first_name']) : '';
 $comment = isset($_POST['comment']) ? trim($_POST['comment']) : '';
 $tid = isset($_POST['tid']) ? trim($_POST['tid']) : '';
 $fid = isset($_POST['fid']) ? trim($_POST['fid']) : '';
-$product = isset($_POST['product']) ? $_POST['product'] : '';
+$products = isset($_POST['products']) ? $_POST['products'] : '';
 
 if(isset($_POST['visit_id'])){ 
     $visit_id = $_POST['visit_id'];
@@ -20,7 +20,7 @@ $post_data = json_encode(array(
     'first_name' => $first_name,
     'comment' => $comment,
     'interest' => $interest,
-    'products' => $product,     
+    'products' => $products,     
     ));
 
 $url = 'http://robocrm.nanocoding.com/icu/lead?tid='.$tid."&fid=".$fid ;
