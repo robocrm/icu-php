@@ -6,7 +6,7 @@ $first_name = isset($_POST['first_name']) ? trim($_POST['first_name']) : '';
 $comment = isset($_POST['comment']) ? trim($_POST['comment']) : '';
 $tid = isset($_POST['tid']) ? trim($_POST['tid']) : '';
 $fid = isset($_POST['fid']) ? trim($_POST['fid']) : '';
-$product = isset($_POST['product']) ? trim($_POST['product']) : '';
+$product = isset($_POST['product']) ? $_POST['product'] : '';
 
 if(isset($_POST['visit_id'])){ 
     $visit_id = $_POST['visit_id'];
@@ -14,17 +14,15 @@ if(isset($_POST['visit_id'])){
     if(isset($_COOKIE["visit_id"])) { $visit_id = $_COOKIE["visit_id"] ;} else {$visit_id = null;};    
 }
 
-$product = json_encode($product[0]);
 $post_data = json_encode(array(
     'visit_id' => $visit_id,
     'phone' => $phone,
     'first_name' => $first_name,
     'comment' => $comment,
     'interest' => $interest,
-    'products' => '['.$product.']',     
-    ), JSON_FORCE_OBJECT);
+    'products' => $product,     
+    ));
 
-// var_dump($post_data);
 $url = 'http://robocrm.nanocoding.com/icu/lead?tid='.$tid."&fid=".$fid ;
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);
