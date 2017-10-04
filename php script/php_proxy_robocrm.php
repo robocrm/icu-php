@@ -1,5 +1,7 @@
 <?php
 
+date_default_timezone_set('UTC');
+
 function curl($url, $method, $data = null) 
 {
 	$ch = curl_init();
@@ -39,11 +41,11 @@ function curl($url, $method, $data = null)
 $data = json_decode(file_get_contents('php://input'));
 
 if (isset($data->visit)) {
-	$log = file_get_contents('php://input').'--'.$_SERVER['HTTP_USER_AGENT']."\r\n";
+	$log = date('d:m:y - H:i:s').'--'.file_get_contents('php://input').'--'.$_SERVER['HTTP_USER_AGENT'];
 	if (isset($_COOKIE['session_id'])) {
-		file_put_contents ('log.txt', $_COOKIE['session_id'].'--'.$log, FILE_APPEND);
+		file_put_contents ('log.txt', $log.'--'.$_COOKIE['session_id']."\r\n", FILE_APPEND);
 	} else {
-		file_put_contents ('log.txt', $log, FILE_APPEND);
+		file_put_contents ('log.txt', $log."\r\n", FILE_APPEND);
 	}
 
 	if (isset($data->xhr)) {
@@ -60,9 +62,11 @@ if (isset($data->visit)) {
 			setcookie('sid', $result->cookies->sid, -1, '/');
 			setcookie('vid', $result->cookies->vid, -1, '/');
 
-			// $result = curl("http://robocrm.nanocoding.com/icu/load_number?tid=".$data->tid."&sid=".$result->cookies->sid, "GET");
-			echo '66666666666666';
-			exit();
+			$result = curl("http://robocrm.km.nanocoding.com/icu/load_number?tid=".$data->tid."&sid=".$result->cookies->sid, "GET");
+			if ($result) {
+				echo $result->number;
+			}
+			exit(); 
 		}
 	}
 } else {
@@ -85,7 +89,7 @@ if (isset($data->visit)) {
 	    'first_name' => $first_name,
 	    'comment' => $comment,
 	    'interest' => $interest,
-	    'products' => $products,
+	    'products' => $product,     
 	    ));
 	$url = 'http://robocrm.nanocoding.com/icu/lead?tid='.$tid."&fid=".$fid ;
 	$ch = curl_init();
