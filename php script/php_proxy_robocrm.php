@@ -89,7 +89,7 @@ if (isset($data->visit)) {
 	    'first_name' => $first_name,
 	    'comment' => $comment,
 	    'interest' => $interest,
-	    'products' => $product,     
+	    'products' => $products,     
 	    ));
 	$url = 'http://robocrm.nanocoding.com/icu/lead?tid='.$tid."&fid=".$fid ;
 	$ch = curl_init();
