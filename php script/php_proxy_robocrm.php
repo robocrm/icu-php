@@ -62,7 +62,7 @@ if (isset($data->visit)) {
 			setcookie('sid', $result->cookies->sid, -1, '/');
 			setcookie('vid', $result->cookies->vid, -1, '/');
 
-			$result = curl("http://robocrm.km.nanocoding.com/icu/load_number?tid=".$data->tid."&sid=".$result->cookies->sid, "GET");
+			$result = curl("http://robocrm.nanocoding.com/icu/load_number?tid=".$data->tid."&sid=".$result->cookies->sid, "GET");
 			if ($result) {
 				echo $result->number;
 			}
